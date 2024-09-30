@@ -1,0 +1,42 @@
+Caching at different levels
+- Where you are caching?
+	- API server main memory
+		- size limitation in RAM
+		- not persistent
+		- different instances may not all have the same values
+			- inconsistency
+		- local to one host and need not all servers
+		- Network calls not made, performance boosts
+		- helpful for sticky sessions
+			- can be result of load balancing, or use the LB for this
+		- helpful for very static data
+		- TTL is crucial, size limit for cache is important
+	- Redis like instances
+		- single source of truth
+		- 
+	- DB views(materialized)
+		- highly consistent
+		- mostly for relational DBs
+		- add/derive columns in new table/view
+		- helpful as it avoids joins
+		- triggers for updates
+	- Browsers(local storage)
+		- usecase: personalized recommendations for each user
+		- TTL can be optimized
+	- CDN servers
+		- proxy b/w user and server, and ctrl'ed by TTL
+		- Images/videos
+		- can Cache responses as well that can be nearly static
+		- can go directly CDN->USER in USER->CDN->SERVER->DB->SERVER->CDN->USER
+	- Disk level caching in the server
+		- in addition to OS and everything in EC2 you can also use disk
+		- Not memory bound(8GB RAM vs 20GB Disk)
+		- Helps save the network I/O, local disk read is faster
+		- 
+Scaling
+
+Concurrency
+
+Delegation
+
+Communication
