@@ -36,6 +36,45 @@ Caching at different levels
 	- Caching on LB
 	- API Gateway
 Scaling
+- Ability to handle large number of concurrent requests
+	- concurrent requests
+- Vertical Scaling
+	- Easy to manage
+	- Risk of downtime
+	- Hulk
+		-infra made bulky, add more CPU, RAM, DISK
+	- HW limitations of two HW components to connect
+		- NW cards have buses to transfer data and need to be compatible
+- Horizontal Scaling
+	- Linear amplification
+	- Fault tolerance
+	- Network partitioning
+	- Not infinite scaling
+		- dependency resources like DBs or other services can be impacted
+
+- Good scaling plan
+	- first vertical
+	- then always horizontal
+	- knowing expected traffic first
+		- ASGs take their own time to scale for high load
+	- LOAD testing is ALWAYS needed
+	- Premature optimization does not help
+	- Always scale bottom up(Scale the ones you are dependent on first)
+	- And scale down from top down
+	- Otherwise Cascading failures happen
+	
+- Scaling DB
+	- Vertical Scaling
+	- Horizontal Scaling
+		- Read Replicas
+			- read to write-> 99:1
+			- readers more than writers
+			- master, replica and async replication b/w db's
+				- write to master is sent to master
+					- actually replica pulls the updates from master in async
+				- read to replica and write to master
+				- 
+				
 
 Concurrency
 
