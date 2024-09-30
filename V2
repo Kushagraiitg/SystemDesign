@@ -1,4 +1,5 @@
 Caching at different levels
+- Very usecase specific
 - Where you are caching?
 	- API server main memory
 		- size limitation in RAM
@@ -32,7 +33,8 @@ Caching at different levels
 		- in addition to OS and everything in EC2 you can also use disk
 		- Not memory bound(8GB RAM vs 20GB Disk)
 		- Helps save the network I/O, local disk read is faster
-		- 
+	- Caching on LB
+	- API Gateway
 Scaling
 
 Concurrency
