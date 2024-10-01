@@ -35,6 +35,16 @@ Caching at different levels
 		- Helps save the network I/O, local disk read is faster
 	- Caching on LB
 	- API Gateway
+- Redis: It can serve as a cache/ No-SQL DB/msg queue
+	- In memory data store
+	- supports multiples DS
+	- RDB snappshots/AOF for durability
+	- Clustering for multiple hosts
+	- master slave replication for redundancy and LB
+	- high availability by redis sentinel
+	- pub/sub msging
+	- monitoring and management
+	- Commonly used for caching, session management, real-time analytics, leaderboard systems, and pub/sub messaging. Its versatility makes it suitable for a wide range of applications.
 Scaling
 - Ability to handle large number of concurrent requests
 	- concurrent requests
