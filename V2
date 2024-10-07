@@ -83,11 +83,104 @@ Scaling
 				- write to master is sent to master
 					- actually replica pulls the updates from master in async
 				- read to replica and write to master
-				- 
+				- can customize read vs write solutions(bank usecases) based on criticality
+				- through replicas
+	- Sharding
+		- creating mutually exclusive set of data
+		- api server knows routing information for the sharding logic
+
+
+Delegation
+- What does not need to be done in realtime should not be done in realtime
+- Delegate and respond
+- eg: api server only creates a broker task and responds
+	- workers updates the db
+	- server sees after db is updated
+	- lesser concurrent requests
+- Brokers:
+	- Message brokers significantly enhance system design by facilitating efficient, scalable, and reliable communication between components. By enabling asynchronous processing, decoupling, and flexible routing, they support the delegation and response model effectively, allowing systems to be more resilient and responsive to user actions. This architecture is particularly valuable in microservices and event-driven systems, where the ability to handle messages efficiently is paramount.
+	- Decoupling components- loose coupling and independent development
+	- Asynchronous communication- non-blocking opearations and queueing
+	- Scalability- load balancing and dynamic scaling
+	- reliable messaging
+	- Event Publishing and Subscribing
+	- Message Queues:
+		- SQS, RabbitMQ
+		- homogeneous consumers
+		- message into broker, consumer pulls the message
+		- can be FIFO
+		- message is exlusive to consumer
+	- Pub Sub msg brokers:
+		- publish to a topic and multiple consumers can liten
+		- Apache Kafka, Google pub sub
+	- Streaming message brokers:
+		- These brokers are designed to handle continuous streams of data and real-time processing. 
+		- They are optimized for high-throughput and low-latency message delivery.
+		- Apache Pulsar and Apache Flink
+		- kinesis
+	- Brokerless
+		- These systems do not rely on a centralized broker for message delivery. Instead, they enable direct communication between producers and consumers.
+		- Can improve latency by eliminating the broker overhead.
+		- Apache Kafke(Kcraft mode) and ZeroMQ
+	- Hybrid msg broker
+		- Some message brokers combine features of both queue-based and publish/subscribe models, allowing for more flexibility in messaging patterns.
+		- ActiveMQ an NATS
+	- Cloud Based Message Broker
+		- azure service bus and aws eventbridge
+	- Stream:
+		- Kafka, Kinesis
+		- Heterogenous consumer
+		- consumers iterate over the messages in broker
+		- messages dont delete without deletion policy
+		- Kafka essentials:
+			- Apache Kafka is a distributed event streaming platform widely used for building real-time data pipelines and streaming applications. 
+			- It is designed to handle high-throughput and low-latency data feeds, making it an essential tool for modern data architectures.
+			- Message stream that holds messages forever until deletion policy
+			- Overview of Apache Kafka
+				Components:
+
+					Producers: Applications that send (publish) messages to Kafka topics.
+					Consumers: Applications that read (subscribe to) messages from topics.
+					Topics: Categories or feed names where messages are published.
+					Brokers: Kafka servers that store and manage the data.
+					Partitions: Each topic is divided into partitions, allowing for parallel processing.
+					Architecture: Kafka's architecture is built around a distributed log model, where data is stored in a fault-tolerant manner across multiple brokers. This design ensures scalability and durability.
+			- Advantages of Apache Kafka
+				- High Performance: Kafka is optimized for high throughput and low latency, making it capable of processing millions of messages per second.
+
+				- Durable Storage: Messages are stored on disk, and the system is designed for fault tolerance. You can configure replication for durability and reliability.
+
+				- Scalability: It easily scales horizontally by adding more brokers and partitions, accommodating growth in data volume and throughput.
+
+				- Stream Processing: Kafka Streams API allows for building applications that can process and transform streams of data in real time.
+
+				- Retention and Replay: Kafka allows consumers to read messages at their own pace, and messages can be retained for long periods, enabling replay and auditing capabilities.
+
+				- Community and Ecosystem: Being open-source, Kafka has a vibrant community and a rich ecosystem of tools, connectors, and extensions.
+
+			- Disadvantages of Apache Kafka
+				- Complexity: Setting up and managing a Kafka cluster can be complex, requiring a good understanding of distributed systems.
+
+				- Operational Overhead: Kafka clusters need monitoring, maintenance, and tuning to ensure optimal performance and reliability.
+
+				- Learning Curve: There is a steep learning curve for developers unfamiliar with event streaming and Kafka's architecture.
+
+				- Message Ordering: While Kafka provides ordering guarantees within a partition, it does not guarantee global ordering across all partitions, which can complicate use cases that require strict ordering.
+
+				- Latency: Although Kafka is low-latency, it may not be suitable for use cases requiring real-time processing with sub-millisecond latency.
+
+				- Resource Intensive: Kafka can consume significant resources (CPU, memory, and disk) depending on the workload and configurations, which may require careful planning for infrastructure.
+			limitations:
+				- #consumers = #partitions
+				- 	ordering is guaranteed within a partition
+				- 	adding new consumers is limited by number of partitions
+				- until consumers commit, only atleast one semantic is ensured and not exactly one semantic
+		- kinesis
+			- shards:Shards are a crucial component of Amazon Kinesis, enabling scalability, parallel processing, and data ordering. Understanding how to effectively manage and utilize shards is essential for building efficient and responsive real-time data streaming applications. ingestion and retrieval.
+			- Amazon Kinesis is a powerful message broker for real-time data streaming, offering scalability, flexibility, and integration with the broader AWS ecosystem, making it suitable for event-driven architectures.		
+		
 				
 
 Concurrency
-
-Delegation
 
 Communication
