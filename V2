@@ -181,6 +181,44 @@ Delegation
 		
 				
 
-Concurrency
+Concurrency-
+- to get faster execution
+	- threads
+	- multiprocessing
+	
+- issue with multiprocessing
+	- communication b/w threads
+	- concurrenct use of shared resources
+		- db
+		- in-memory variables
+- handling concurrency
+	- locks(optimistic and pessimistic)
+	- mutexes and semaphores
+	- go lock-free datastructures<-CRDT
+- Transactions
+- Atomic instructions/operations
+
 
 Communication
+- RPC
+	- allows a program to runa procedure in a different address space, remote server
+	- client server model
+- HTTP is a way to do RPC
+	- HTTP is an application layer protocol used for transferring hypertext (web pages) and other resources over the internet.
+	- follows request/response model
+	- Methods: GET/POST/PUT/DELETE
+	- Status Codes- outcome of a request: 200, 404, 500
+	- Headers: provide additional info like contect type and caching policies
+- HTTPS
+	- HTTPS is the secure version of HTTP, using encryption to protect data transmitted between the client and server.
+	- SSL/TLS for encryption by CAs
+	- Short Polling
+	- Long Polling
+- TCP
+	- Three way handshakes, SYN, SYN-ACK, ACK
+- Web Sockets:
+	- a persistent TCP connection forming a bidirectional channel b/w client and server via HTTP
+	- Server can proactively send data to client
+	- for low latency continuous data exchange
+- Server sent events
+	- 
