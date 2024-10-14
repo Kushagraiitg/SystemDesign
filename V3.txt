@@ -1,0 +1,63 @@
+Relational Databases
+
+- Data is stored in rows and columns
+- row = records
+- columns = attributes of data
+- Tabkes, Schemas, PK, FK, Normalization - removing redundancy of data by breaking large data into smaller DBs, 
+- Relations
+- ACID properties
+	- Atomic: Ensures all operations are completed successfully or aborted
+	- Consistency: Ensures a transaction brings a DB from one valid state to another maintaining integrity
+	- Isolation: Ensuring all transactions occur independently without interference
+	- Durability: Guarantees a commited transaction would stay as is even in case of system failure
+- Common Uses:
+	- Structured Data
+	- Complex Queries
+	- When strong data integrity and consistency is critical
+- Real World Uses:
+	- Transaction Systems
+	- Content Management System
+	- User management
+- Designing a relational DB
+	- Identify entities
+	- Define relationships
+	- Create Tables
+	- PK for each table and FK for relationships
+	- Normalization: 
+		1NF: Ensure all columns contain atomic values and that each column contains values of a single type.
+		2NF: Remove partial dependencies by ensuring that all non-key attributes are fully dependent on the primary key.
+		3NF: Remove transitive dependencies by ensuring that non-key attributes depend only on the primary key.
+- Transactions: a transaction is a sequence of one or more operations (such as queries, updates, inserts, or deletes) that are executed as a single unit of work
+- Database Indexes
+	- making reads faster and writes slower
+- DB Locking
+	- to protect sanity of data
+	- protecting data against concurrent updates
+	- Pessimistic Locking:
+		- Acquire lock before proceeding  ACQ_LOCK
+		- SHARED LOCK
+			- FOR SHARE
+			- reserved for read by current transaction READ AND MODIFY
+			- only current T can modify the row
+			- other Ts can read the locked rows READ AND WAIT
+			- other Ts can't modify the locked rows
+			- provides high read throughput
+			- when the transactional wants to update the lock, it takes an EXCLUSIVE LOCK
+		- EXCLUSIVE LOCK	
+			- FOR UPDATE
+			- reserved for write bu current transactions
+			- other Ts can't even read the locked row
+			- exlusive rights on the lock given to the current transaction
+			- SEVERELY impacts the throughput
+		- SKIP LOCK
+			- FOR UPDATE SKIP LOCKED
+			- SKIP the lock on the locked row
+		- NOWAIT
+			- FOR UPDATE NOWAIT
+			- if the new transaction want to kill itself if some other T has lock
+		- Risk: Transactional Deadlock - stall DBs
+			- Transaction that detects deadlock kills itself
+			- deadlock detection algo needs to run
+- Pessimistic Locking
+- Designing: Airline Checkin System
+- Designing: KV store on relational DB
