@@ -3,7 +3,7 @@ Relational Databases
 - Data is stored in rows and columns
 - row = records
 - columns = attributes of data
-- Tabkes, Schemas, PK, FK, Normalization - removing redundancy of data by breaking large data into smaller DBs, 
+- Tables, Schemas, PK, FK, Normalization - removing redundancy of data by breaking large data into smaller DBs, 
 - Relations
 - ACID properties
 	- Atomic: Ensures all operations are completed successfully or aborted
@@ -45,7 +45,7 @@ Relational Databases
 			- when the transactional wants to update the lock, it takes an EXCLUSIVE LOCK
 		- EXCLUSIVE LOCK	
 			- FOR UPDATE
-			- reserved for write bu current transactions
+			- reserved for write but current transactions
 			- other Ts can't even read the locked row
 			- exlusive rights on the lock given to the current transaction
 			- SEVERELY impacts the throughput
@@ -60,4 +60,16 @@ Relational Databases
 			- deadlock detection algo needs to run
 - Pessimistic Locking
 - Designing: Airline Checkin System
+	- Multiple airlines
+	- every airline has multiple flights(120 seats)
+	- every flight has multiples trips
+	- user books a seat in one trip of a flight
+	HANDLE MULTIPLE PEOPLE TRYING TO PICK SEATS ON A PLANE
+		- airlines table(id, name)
+		- flights(id, airline_id, name)
+		- trips(id, flight_id, flytime)
+		- users(id, name)
+		- seats(is, name, trip_id, user_id)
+		
+		
 - Designing: KV store on relational DB
