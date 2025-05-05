@@ -73,3 +73,9 @@ Relational Databases
 		
 		
 - Designing: KV store on relational DB
+- Fix inventory + Contention = Locking
+
+
+
+ 
+
