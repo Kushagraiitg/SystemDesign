@@ -71,9 +71,35 @@ Relational Databases
 		- users(id, name)
 		- seats(is, name, trip_id, user_id)
 		
-		
+- ANSII standard
+	- TBA
 - Designing: KV store on relational DB
 - Fix inventory + Contention = Locking
+	- Delete if  created_at is updated to -1
+		- delete from STORE where created_at<=-1
+	- Insert
+		- insert into store value(k, v, e)
+		- get + put
+		- rather always upsert
+			- upsert is an atomic operation so wont need extra get
+			- network I/O is saved
+			- replace onto or on duplicate
+	- TTL
+		- Select * from STORE where key = k and expired_at > now
+		- then delete
+		- 1. Batch + CRON(on-disk)
+		- 2. Lazy Deletion(in-memory DB)
+			- eg REDIS
+			- if found(GET) to be expired just delete, as in mem
+				- malloc
+			- What is never fetched?
+				- key is never deleted, CRON job required
+		- 3. Random Sampling and Deletion - REDIS
+			- For in-mem DB
+				- does not delete expires
+				- samples 20 keys, delete all keys expired
+				- if deleted key > 25%, repeat
+			
 
 
 
