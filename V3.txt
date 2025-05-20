@@ -88,19 +88,27 @@ Relational Databases
 		- Select * from STORE where key = k and expired_at > now
 		- then delete
 		- 1. Batch + CRON(on-disk)
-		- 2. Lazy Deletion(in-memory DB)
+		- 2. Lazy Deletion(in-memory DB) - handles bulk of division in REDIS
 			- eg REDIS
 			- if found(GET) to be expired just delete, as in mem
 				- malloc
 			- What is never fetched?
 				- key is never deleted, CRON job required
-		- 3. Random Sampling and Deletion - REDIS
+		- 3. Random Sampling and Deletion - REDIS - Central Limit Theorem
 			- For in-mem DB
 				- does not delete expires
 				- samples 20 keys, delete all keys expired
 				- if deleted key > 25%, repeat
-			
-
+		- 2+3 allows REDIS to be fast
+	
+- High Level Arch
+	- try horizontal scaling as much as possible
+	- if not able to scale, do master-replica, write to master and read from replica
+	- Multiple copies of master and its own set of replica
+	- Load balancing needed accordingly
+	- IMPLEMENT IT
+		- master+replica
+		- master-master-routing
 
 
  
