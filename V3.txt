@@ -72,7 +72,12 @@ Relational Databases
 		- seats(is, name, trip_id, user_id)
 		
 - ANSII standard
-	- TBA
+	- ANSI SQL (American National Standards Institute Structured Query Language) is a standardized database query language designed to ensure consistent database management and interoperability across various Database Management Systems (DBMS).
+	- DDL Data definition Language CREATE, ALTER, DROP
+	- DML Data Modification Language SELECT, INSERT, UPDATE, DELETE
+	- DCL Data Control Language GRANT and REVOKE
+	- TCL Transaction Control Language BEGIN, COMMIT, ROLLBACK
+	- 
 - Designing: KV store on relational DB
 - Fix inventory + Contention = Locking
 	- Delete if  created_at is updated to -1
