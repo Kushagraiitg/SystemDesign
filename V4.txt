@@ -1,0 +1,23 @@
+Non-Relational DBs
+- Not relationally structured
+- Give options to horizontal scale and availability by providing eventual consistency
+- no complete downtime almost never
+- sharding -> scaling
+
+Document DBs (MongoDB, ElasticSearch)
+- Mostly json based
+- supports complex queries
+- Partial updates to documents available
+- closest to relation DBs like a generic RDB
+
+Key Value Store (Redis, DynamoDB, Aerospike)
+- Key wise access pattern -> makes sharding easy
+- so heavily partitioned
+- complex queries not supported
+- cross partition operations are expensive
+
+Column Oriented DBs (Redshift)
+- utilize the query pattern of users
+- eg stock ticks
+- for queries like avg(price), lookup is very easy
+
