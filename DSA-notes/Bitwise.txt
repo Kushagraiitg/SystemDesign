@@ -1,0 +1,41 @@
+Bitwise Algorithms
+- AND OR XOR, NOT, Left Shift , Right Shift
+- &
+- |
+- ^
+- !~
+- <<
+- >>
+- How to set a bit in the number?
+	- digit at n'th position
+	- num | (1<<n)
+- How to unset a bit
+	- num & (~(1<<n))
+- Toggling a bit at nth position
+	- num ^ (1<<n)
+- Check if bit at nth position is set or not
+	- (num & (1<<n)) == 1 or 0
+- Multiply a number by 2
+	- num << 1
+- Divide by 2
+	- num >> 1
+- Compute XOR for 1 to n(direct method)
+	- // If n is a multiple of 4
+        if (n % 4 == 0)
+            return n;
+     
+        // If n%4 gives remainder 1
+        if (n % 4 == 1)
+            return 1;
+     
+        // If n%4 gives remainder 2
+        if (n % 4 == 2)
+            return n + 1;
+     
+        // If n%4 gives remainder 3
+        return 0;
+        
+- to know if a number is a power of 2
+	- if num==0 false
+	- else if (num & num-1) == 0 return true
+	- else false
