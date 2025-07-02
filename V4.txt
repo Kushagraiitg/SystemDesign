@@ -20,4 +20,29 @@ Column Oriented DBs (Redshift)
 - utilize the query pattern of users
 - eg stock ticks
 - for queries like avg(price), lookup is very easy
+- more oppurtunities to compress, 29X kinda, cause of homogeneous nature of data
+Foundational paper : C-store
+
+Graph DB
+- stores data in node and edges
+- for social behaviours and recommendations
+- store adjacency relationship
+- specialized in graph operations
+eg: Neo4j, Neptune, DGraph, TigerGraph 
+
+Why non-relational DBs scale
+- There are no relations
+- data can be denormalized
+- data is modelled to be sharded
+
+When SQL
+	- ACID  
+	- relation, constraints
+	
+When noSQL
+	- No relation
+	- data can be denormalized
+	
+
+
 

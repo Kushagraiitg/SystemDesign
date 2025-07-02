@@ -39,3 +39,8 @@ Bitwise Algorithms
 	- if num==0 false
 	- else if (num & num-1) == 0 return true
 	- else false
+- count set bits in an integer
+	- count with all bits, & and then right shift
+- position of rightmost set bit
+	- n = n ^ (n & (n - 1));
+
