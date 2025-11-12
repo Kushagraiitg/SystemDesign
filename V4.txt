@@ -43,6 +43,22 @@ When noSQL
 	- No relation
 	- data can be denormalized
 	
+	
+Designing: Slack's realtime communication-Text
+	Requirements:
+		Multiple users, multiple channels
+		User DM or message in channel
+		Real-time chat
+		Historical messages can be scrolled through
+		
+	Schemas
+		users-id,name
+		channels-id,org,name,type
+		membership-user_id,channel_id,checkpoint
+		messages- from,channel_id,created_at,msg
+		
+	 
+
 
 
 
