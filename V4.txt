@@ -57,7 +57,23 @@ Designing: Slack's realtime communication-Text
 		membership-user_id,channel_id,checkpoint
 		messages- from,channel_id,created_at,msg
 		
-	 
+	 Type of persistence based on type of usecase
+	 	Need persistence: http->store->broadcast
+	 	Dont need realtime persistence: WS->user + batch write
+	 	Dont need persistence: Send via WS
+	 	
+	 Scaling WS
+	 	Low Latency, persistent connection, expensive TCP connection
+	 	If server has 4, and ids A.B,C,D,E
+	 		A subscribes C1
+	 		B
+	 		C
+	 		D
+	 		E subscribes C1
+	 		
+	 	If every WS needs to connect to all other, wasting lots to discuss
+	 	instead introduce a realtime pub-sub(maybe Redis)
+	 	
 
 
 
