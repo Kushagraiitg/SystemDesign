@@ -1,0 +1,37 @@
+
+Resource: 
+https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design
+
+A RESTful web API implementation is a web API that employs Representational State Transfer (REST) architectural principles to achieve a stateless, loosely coupled interface between a client and service. A web API that is RESTful supports the standard HTTP protocol to perform operations on resources and return representations of resources that contain hypermedia links and HTTP operation status codes.
+- Platform Independence
+	- HTTP protocol
+	- JSON/XML
+- Loose Coupling
+RESTful web API design concepts
+- URI: eg https://api.contoso.com/orders/1
+- Resourece representation: how a resource that's identified by its URI is encoded and transported over the HTTP protocol in a specific format, such as XML or JSON
+- the uniform interface includes using standard HTTP verbs to perform operations like GET, POST, PUT, PATCH, and DELETE on resources.
+- Stateless Request Model
+- Hypermedia links
+
+
+- Defining REST API URIs
+	- use nouns and not words
+	- HTTP response for success/failure
+	- plural nouns
+	- Consider the relationships between different types of resources and how you might expose these associations
+		- use hyperlinks as reqd
+	- keep relationship simple and flexible
+		- not more complex than `collection/item/collection`
+	- maintain balance between large number of small resources (normalized vs denormalized)
+	- dont expose internal system
+	
+- Define RESTful web API methods
+	- GET request:  GET request retrieves a representation of the resource at the specified URI. The body of the response message contains the details of the requested resource.
+		- can responde 200. 204(No content), 404(resource not found)
+	- Post request:  POST requests are used to add a new resource to the collection that the URI identifies
+		- 200, 201(Created), 204, 400(Bad request), 405(Method not allowed)
+	- PUT request: update/create- msut be idempotent
+		- 200,201,204,409(Conflict)
+	
+	
