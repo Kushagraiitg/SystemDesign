@@ -33,5 +33,19 @@ RESTful web API design concepts
 		- 200, 201(Created), 204, 400(Bad request), 405(Method not allowed)
 	- PUT request: update/create- msut be idempotent
 		- 200,201,204,409(Conflict)
-	
+	- PATCH request: partial update for existing resources
+		- 200, 400, 409, 415(Unsupported media type)
+	- DELETE request: removes the resource at specified URI
+		- 204,404
+-Resource MIME type
+	- Resource representation is how a resource that's identified by URI is encoded and transported over the HTTP protocol in a specific format, such as XML or JSON.
+- Asynchronous methods
+	- An asynchronous method should return HTTP status code 202 (Accepted) to indicate that the request was accepted for processing but is incomplete.
+	- 303 if a new resource is created
+- Pagination and Filtering
+	- To optimize data retrieval and reduce payload size, implement data pagination and query-based filtering in your API design. 
+	- Pagination
+		- `limit` and `offset`
+ 	- Filtering: x=sth&y=sth2
+ - Support partial response: A HEAD request is similar to a GET request, except that it only returns the HTTP headers that describe the resource, with an empty message body. A client application can issue a HEAD request to determine whether to fetch a resource by using partial GET requests
 	
