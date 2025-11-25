@@ -1,0 +1,39 @@
+System design
+1. Scalability
+	1. Clones: LB+CLuster
+		- ensure deployment
+		- state/session stored in external DB or external cache
+	2. Database
+		- SQL
+			- Master-Slave replication
+			- sharding, denormalization, SQL tuning
+		- noSQL
+			- joins inside app
+	3. Cache
+		- memcache/redis
+		- cached query
+	4. Asynchronism
+		- anything time consuming should be done asynchronously
+2. Performance vs Scalability
+	A service is said to be scalable if when we increase the resources in a system, it results in increased performance in a manner proportional to resources added.
+	For the systems we build we must carefully inspect along which axis we expect the system to grow, where redundancy is required, and how one should handle heterogeneity in this system, and make sure that architects are aware of which tools they can use for under which conditions, and what the common pitfalls are.
+	Performance problems- System is slow for every request
+	Scalability problem- System is slow when scale increases
+3. Latency vs Throughput
+	maximum throughput with acceptable latency
+4. CAP theorem
+	- consitency, availability and partition tolerance, only 2 of the 3 are possible in every case
+	- Centralized Systems - CA
+	- Distributed Systems - CP/AP
+	- Consistency - Every read receives the most recent write or an error
+	- Availability - Every request receives a response, without guarantee that it contains the most recent version of the information
+	- Partition Tolerance - The system continues to operate despite arbitrary partitioning due to network failures
+	- Availability Patterns
+		- Fail-over
+		- replication
+			- Master slave
+			- Tree replication
+			- Master-Master
+			- Buddy replication
+
+	
