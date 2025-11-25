@@ -48,4 +48,9 @@ RESTful web API design concepts
 		- `limit` and `offset`
  	- Filtering: x=sth&y=sth2
  - Support partial response: A HEAD request is similar to a GET request, except that it only returns the HTTP headers that describe the resource, with an empty message body. A client application can issue a HEAD request to determine whether to fetch a resource by using partial GET requests
+ 
+ - HATEOS: Each HTTP GET request should return the information necessary to find the resources related directly to the requested object through hyperlinks included in the response. The request should also be given information that describes the operations available on each of these resources. This principle is known as HATEOAS, or Hypertext as the Engine of Application State. The system is effectively a finite state machine, and the response to each request contains the information necessary to move from one state to another. No other information should be necessary.
+ 
+ 
+ 
 	

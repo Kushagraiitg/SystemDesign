@@ -1,0 +1,260 @@
+1️⃣ SLIDING WINDOW PATTERNS
+
+Sliding window problems usually fall into 4 categories:
+
+A. Fixed-size window
+
+(When window size = K is known)
+
+Examples:
+
+Sliding Window Maximum (239)
+
+First Negative Integer in Window K
+
+Fixed-size sum/max/min
+
+Pattern:
+
+for i in range(n):
+    add nums[i]
+    if i >= k - 1:
+        record answer
+        remove nums[i-k+1]
+
+When to use deque?
+
+When window needs max/min in O(1).
+
+Deque logic:
+
+Maintain elements in monotonic order
+
+Pop smaller elements from back for max
+
+Pop bigger elements from back for min
+
+Key rule:
+Indices out of window → pop from front.
+
+B. Variable-size window (shrink until valid)
+
+Used in:
+
+Longest substring without repeating
+
+Longest subarray with X condition
+
+Fruit into baskets
+
+Typical pattern:
+
+while (window violates condition):
+    shrink from left
+expand from right
+update best
+
+C. Binary Search + Sliding Window
+
+When window size is unknown but must be found (e.g., longest repeating character replacement).
+
+D. Two-pointer window (sorted or special constraint)
+
+Used in:
+
+Trapping Rain Water (two pointer)
+
+Two Sum (sorted array)
+
+Move zeros
+
+Container with most water
+
+2️⃣ PREFIX SUM PATTERNS
+
+Prefix sums help when you need sum of any subarray in O(1).
+
+A. Basic prefix sum
+prefix[i] = sum of nums[0..i-1]
+range sum = prefix[r] - prefix[l]
+
+
+Used in:
+
+Range Sum Query (Immutable)
+
+Subarray sum problems
+
+B. HashMap + Prefix Sum (subarray sum equals K)
+
+Used when array has negative numbers.
+
+Pattern:
+
+map.put(0, 1);
+
+for prefix:
+    if map.contains(prefix - k):
+        count += map.get(prefix-k)
+    map.put(prefix, map.getOrDefault(prefix, 0) + 1)
+
+
+Used in:
+
+Subarray Sum Equals K
+
+Longest Subarray With Sum K
+
+Contiguous array (equal 0 and 1)
+
+C. Prefix Sum + Monotonic Deque
+
+Advanced pattern used in:
+
+Shortest Subarray with Sum ≥ K (LC 862)
+This is the “final boss” prefix sum problem.
+
+Deque stores monotonic increasing prefix sums.
+
+Pop from back if current prefix is smaller
+
+Pop from front if valid window found
+
+D. Prefix + Suffix DP
+
+Used in:
+
+Product of Array Except Self
+
+Trapping Rain Water (prefix max, suffix max)
+
+3️⃣ HASHING PATTERNS
+
+Hash maps appear in:
+
+A. Frequency maps
+
+Used in:
+
+Sort characters by frequency
+
+Top K frequent elements
+
+Anagrams
+
+High-level counting algorithms
+
+B. HashSet for uniqueness
+
+Used in:
+
+Contains duplicate
+
+Longest consecutive sequence
+
+Unique substring detection
+
+C. HashMap for sliding window
+
+Used in:
+
+Longest substring without repeating
+
+Minimum window substring
+
+Permutation in string
+
+Frequency matching
+
+4️⃣ MONOTONIC DEQUE PATTERNS
+
+Used for:
+
+Sliding Window Maximum (max queue)
+
+Sliding Window Minimum
+
+Shortest Subarray with Sum ≥ K (prefix sum deque)
+
+Deque ensures:
+
+Front = best candidate
+
+Back = maintain sorted property
+
+Rules:
+
+Pop front if index out of window
+
+Pop back while maintaining monotonic property
+
+Insert at back
+
+5️⃣ TWO POINTER PATTERNS
+
+Used where:
+
+Sorted arrays
+
+Opposite ends
+
+Water trapping
+
+Partitioning
+
+A. Trapping Rain Water
+
+Three approaches:
+
+Two pointer (O(1) space) ← Best
+
+Prefix/suffix DP arrays
+
+Stack-based (monotonic stack)
+
+6️⃣ PUTTING EVERYTHING TOGETHER – MOST COMMON ALGORITHMIC PATTERNS
+Sliding Window + HashMap
+
+Minimum Window Substring
+
+Longest substring without repeating
+
+Prefix Sum + HashMap
+
+Subarray sum equals K
+
+Contiguous array
+
+Equal number of vowels/consonants
+
+Prefix Sum + Deque
+
+Shortest subarray with sum ≥ K
+
+Deque + Sliding Window
+
+Sliding Window Maximum
+
+Sliding Window Minimum
+
+Two Pointer + DP
+
+Trapping Rain Water suffix/prefix
+
+Container with most water
+
+7️⃣ NOTES TO REMEMBER FOR INTERVIEW
+Sliding window fails when negative numbers appear
+
+→ Use prefix sums or monotonic deque
+
+Deque gives O(n) max/min window
+
+→ Because each element enters/exits once
+
+Prefix sums convert O(n²) brute force to O(n)
+
+→ range sum = prefix difference
+
+HashMap is the fastest way to match frequencies in substrings
+Two pointer is best when array is sorted or moves from left/right
