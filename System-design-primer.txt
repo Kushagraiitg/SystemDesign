@@ -30,10 +30,89 @@ System design
 	- Partition Tolerance - The system continues to operate despite arbitrary partitioning due to network failures
 	- Availability Patterns
 		- Fail-over
+			Active Passive
+				heartbeats from active and passive servers
+				downtime decided by whether passive are hot or not need start up from cold standby
+				master-slave failover
+			Active Active
+				both servers serving traffic
+				master master failover
 		- replication
 			- Master slave
 			- Tree replication
 			- Master-Master
 			- Buddy replication
+		Availability (Total) = Availability (Foo) * Availability (Bar)
+	- Consistency Patterns
+		- Weak consistency
+			VoIP, video chat, realtime multiplayer games
+		- Eventual consistency
+			DNS, email
+		- Strong consistency
+			file systems and RDBMS, transactions
+5. Domain Name System
+	System->ISP->RootDNS->gives IP to ISP->give IP to system-> calls
+	A Domain Name System (DNS) translates a domain name such as www.example.com to an IP address.
+
+	DNS is hierarchical, with a few authoritative servers at the top level. Your router or ISP provides information about which DNS server(s) to contact when doing a lookup. Lower level DNS servers cache mappings, which could become stale due to DNS propagation delays. DNS results can also be cached by your browser or OS for a certain period of time, determined by the time to live (TTL).
+
+	NS record (name server) - Specifies the DNS servers for your domain/subdomain.
+	MX record (mail exchange) - Specifies the mail servers for accepting messages.
+	A record (address) - Points a name to an IP address.
+	CNAME (canonical) - Points a name to another name or CNAME (example.com to www.example.com) or to an A record.
+	Services such as CloudFlare and Route 53 provide managed DNS services. Some DNS services can route traffic through various methods:
+		1. Round robin
+		2. Weighted Round robin
+		3. least connections
+		4. Weighted least connection
+		5. latency based routing
+		6. geolocation based routing
+	Disadvantages:
+		1. extra latency
+		2. heavy management
+		3. DDoS attacks
+6. Content Delivery Network
+	A content delivery network (CDN) is a globally distributed network of proxy servers, serving content from locations closer to the user. Generally, static files such as HTML/CSS/JS, photos, and videos are served from CDN, although some CDNs such as Amazon's CloudFront support dynamic content. The site's DNS resolution will tell clients which server to contact.
+	Push CDNs-less updated content
+	Pull CDNs- heavier traffic well supported
+	Advantage
+		Increases speed of response
+		decreases load on main server
+		increases uptime for main server
+		increases security for communication
+	Disadvantage(s): CDN
+		CDN costs could be significant depending on traffic, although this should be weighed with additional costs you would incur not using a CDN.
+		Content might be stale if it is updated before the TTL expires it.
+		CDNs require changing URLs for static content to point to the CDN.
+7. Load Balancers
+		Load balancers distribute incoming client requests to computing resources such as application servers and databases. In each case, the load balancer returns the response from the computing resource to the appropriate client. 
+		Load balancers are effective at:
+			Preventing requests from going to unhealthy servers
+			Preventing overloading resources
+			Helping to eliminate a single point of failure
+			Load balancers can be implemented with hardware (expensive) or with software such as HAProxy.
+		Additional benefits include:
+			SSL termination - Decrypt incoming requests and encrypt server responses so backend servers do not have to perform these potentially expensive operations
+			Removes the need to install X.509 certificates on each server
+			Session persistence - Issue cookies and route a specific client's requests to same instance if the web apps do not keep track of sessions
+		To protect against failures, it's common to set up multiple load balancers, either in active-passive or active-active mode.
+		Load balancers can route traffic based on various metrics, including:
+			Random
+			Least loaded
+			Session/cookies
+			Round robin or weighted round robin
+			Layer 4: Layer 4 load balancers look at info at the transport layer to decide how to distribute requests. Generally, this involves the source, destination IP addresses, and ports in the header, but not the contents of the packet. Layer 4 load balancers forward network packets to and from the upstream server, performing Network Address Translation (NAT).
+			Layer 7: Layer 7 load balancers look at the application layer to decide how to distribute requests. This can involve contents of the header, message, and cookies. Layer 7 load balancers 				terminate network traffic, reads the message, makes a load-balancing decision, then opens a connection to the selected server. For example, a layer 7 load balancer can direct video traffic to servers that host videos while directing more sensitive user billing traffic to security-hardened servers.
+				At the cost of flexibility, layer 4 load balancing requires less time and computing resources than Layer 7, although the performance impact can be minimal on modern commodity 				hardware.
+		Supports horizontal scaling
+		Disadvantages:
+			new POF
+			complexity
+			single LB=SPOF		
+
+	
+
+
+	
 
 	
