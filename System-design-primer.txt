@@ -109,6 +109,28 @@ System design
 			new POF
 			complexity
 			single LB=SPOF		
+		
+8. Reverse Proxy
+	A reverse proxy is a server that:
+		Receives client requests
+		Forwards them to one or more backend servers
+		Gets the response
+		Sends the response back to the client
+		To the client, it appears as one single server.
+	Benefits:
+		increased security
+		can scale servers and cfg change
+		decrypt input and encrypt output, servers dont need to install X.509 certs
+		compression
+		caching
+		serves static content
+	LB vs Reverse Proxy
+		LB when there are multiple server
+		Layer & reverse proxy and LB supported by NGINX and HAProxy
+	Disadvantaes
+		complexity, time increases
+		SPOF
+
 
 	
 
