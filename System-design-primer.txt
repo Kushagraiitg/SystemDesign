@@ -784,7 +784,157 @@ System design
 
 			Supports Gremlin graph queries.
 	
+	CAP for DBs
+		CP-MongoDB, HBase, Spanner
+		AP-Cassandra, DDB
+		CA-Rare, only when no partitioning
+		
+	Indexing
+		Indexing — SDI-Friendly Explanation
 
+		Indexes are data structures that make reads faster by allowing the database or storage engine to avoid scanning all records. They work like the index of a book: instead of flipping through every page, you jump directly to where the data lives.
+
+		In system design, indexing decisions directly affect latency, throughput, storage costs, and write performance.
+
+		🔑 Why Indexes Matter in System Design
+		Indexes improve read performance
+
+		Reduce lookup time from O(n) to O(log n) or even O(1) depending on index type.
+
+		Critical for high-read systems (feeds, search, recommendation systems, user profile lookups).
+
+		Indexes hurt write performance
+
+		Every insert/update/delete must also update the index.
+
+		More indexes → slower writes.
+
+		Important in high-write systems (logging, messaging, analytics ingestion).
+
+		Indexes require more storage
+
+		Often 10–30% additional storage.
+
+		Must be considered when designing large-scale systems.
+
+		📚 Types of Indexes (SDI Context)
+		1. B-Tree Index (Most common)
+
+		Default index in SQL databases.
+
+		Balanced tree structure.
+
+		Supports:
+
+		Equality queries (WHERE id = 5)
+
+		Range queries (BETWEEN, <, >, timestamps)
+
+		Sorting
+
+		Used in: MySQL, PostgreSQL, SQLite, many NoSQL engines (MongoDB's b-tree variant).
+
+		When to use:
+
+		User lookups
+
+		Time-based queries
+
+		“Get recent posts”, “Get messages between t1 and t2”
+
+		2. Hash Index
+
+		Uses a hash table.
+
+		O(1) lookup for equality.
+
+		But does NOT support range queries because hashing destroys ordering.
+
+		When to use:
+
+		Caches (Redis)
+
+		Key-value stores
+
+		Equality-only lookups:
+
+		SELECT * FROM users WHERE email = 'x'
+
+		3. Bitmap Index
+
+		Each distinct value gets a bitmap.
+
+		Great for low-cardinality columns (few unique values).
+
+		Used in analytics systems (Druid, ClickHouse, Redshift).
+
+		When to use:
+
+		Gender, status flags, boolean fields
+
+		Large analytical scans with filtering
+
+		4. Full-Text Index
+
+		Supports word and phrase search.
+
+		Tokenization + inverted index.
+
+		When to use:
+
+		Search boxes
+
+		Blogs, ecommerce search
+
+		Anything requiring relevance ranking
+
+		5. Secondary Index
+
+		Any index that is not the primary key index.
+
+		Common in NoSQL where primary key is often the only default index.
+
+		When to use:
+
+		You need to query by a field that is not the main key
+
+		E.g., MongoDB: indexing email in addition to _id
+
+		6. Composite Index
+
+		Index on multiple columns.
+
+		Example: (user_id, created_at)
+
+		Notes:
+
+		Order matters: prefix rule
+		(a, b) can index queries on a or (a,b) but NOT on b alone.
+
+		When to use:
+
+		Fetch latest posts for a user
+
+		Query using multiple filtering conditions
+
+		⚖️ Tradeoffs (Important for SDI!)
+		Pros
+
+		✔ Huge improvement in read latency
+		✔ Reduced load on DB
+		✔ Essential for large-scale systems
+
+		Cons
+
+		✗ Slows down writes (extra work per insert/update/delete)
+		✗ Consumes more storage
+		✗ Must be carefully chosen—every unnecessary index costs performance
+
+		🧠 What to Say in a System Design Interview
+
+		Here’s a clean, interview-ready statement:
+
+		“We should add a B-tree index on the timestamp and user_id to support range queries. However, indexes slow down writes, so we need to be selective. Since this service is read-heavy, the tradeoff is acceptable. For text search, we’d rely on a full-text inverted index, likely via Elasticsearch.”
 
 	
 
