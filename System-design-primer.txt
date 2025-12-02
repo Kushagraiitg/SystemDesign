@@ -120,7 +120,7 @@ System design
 	Benefits:
 		increased security
 		can scale servers and cfg change
-		decrypt input and encrypt output, servers dont need to install X.509 certs
+		SSL termination: decrypt input and encrypt output, servers dont need to install X.509 certs
 		compression
 		caching
 		serves static content
@@ -130,7 +130,53 @@ System design
 	Disadvantaes
 		complexity, time increases
 		SPOF
+9. Application Layer
+	Web layer vs platform/Application layer
+		Microservices:  microservice architecture is an architectural pattern that organizes an application into a collection of loosely coupled, fine-grained services that communicate through lightweight protocols. This pattern is characterized by the ability to develop and deploy services independently, improving modularity, scalability, and adaptability. closely associated with principles such as domain-driven design, decentralization of data and governance, and the flexibility to use different technologies for individual services to best meet their requirements.
+		Service Discovery: Systems such as Consul, Etcd, and Zookeeper can help services find each other by keeping track of registered names, addresses, and ports.
+	
+10 Database
+	RDBMS
+		collection of data items organized in tables
+		ACID
+			Atomicity
+			Consistency
+			Isolation
+			Durability
+		scaling a RDBMS
+			master-slave
+			master-master
+			federation
+			sharding
+			denormalization
+			SQL tuning
+			
+	NOSQL
+		key-value store
+		document store
+		wide column store
+		graph db
+		BASE-Basically available Soft state eventual consistency
+	
+	Reasons for SQL:
 
+	Structured data
+	Strict schema
+	Relational data
+	Need for complex joins
+	Transactions
+	Clear patterns for scaling
+	More established: developers, community, code, tools, etc
+	Lookups by index are very fast
+	Reasons for NoSQL:
+
+	Semi-structured data
+	Dynamic or flexible schema
+	Non-relational data
+	No need for complex joins
+	Store many TB (or PB) of data
+	Very data intensive workload
+	Very high throughput for IOPS
 
 	
 
