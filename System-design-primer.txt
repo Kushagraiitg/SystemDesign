@@ -962,7 +962,17 @@ System design
 		- write back
 		- refresh ahead
 		
-
+12. Asynchronism
+	 message queues
+	 	receive hold and deliver msgs
+	 	Redis is useful as a simple message broker but messages can be lost.
+	 	RabbitMQ is popular but requires you to adapt to the 'AMQP' protocol and manage your own nodes.
+	 	Amazon SQS is hosted but can have high latency and has the possibility of messages being delivered twice.
+	 	
+	 	Task queues- Celery
+	 	back pressure
+	 	
+	 	
 
 
 	
