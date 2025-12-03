@@ -936,6 +936,35 @@ System design
 
 		“We should add a B-tree index on the timestamp and user_id to support range queries. However, indexes slow down writes, so we need to be selective. Since this service is read-heavy, the tradeoff is acceptable. For text search, we’d rely on a full-text inverted index, likely via Elasticsearch.”
 
+
+11. Cache
+	- helps absorb uneven loads and spikes
+	- client caching
+		client
+		browser
+		distinct cache layer
+	- CDN caching
+	- Web Server caching
+	- DB caching
+	- Application caching
+		- memcache
+		- redis
+		- cache invalidation-LRU
+		- caching at DB query
+		- caching at object level
+			user session
+			fully rendered webpage
+			activity streams
+			user graph data
+	- When to update cache
+		- cache aside
+		- write through cache
+		- write back
+		- refresh ahead
+		
+
+
+
 	
 
 	
