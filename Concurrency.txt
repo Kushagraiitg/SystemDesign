@@ -1,0 +1,17 @@
+Multi Threading
+- Race Condition: When the outcome depends on the unpredictable timing of threads.
+- Deadlock: Circular dependency types situation
+- Livelock: Two or more processes constantly change state wrt the other but make no progres
+- Starvation: A denied thread cause of other greedy threads
+
+Java concurrency
+- Java Memory Model
+- `volatile` changes made by one thread is visible to the other, consistency without full synchronization
+	- useful for boolean flags, status indicators
+	- when one writes others read
+	- when no compound operations involved
+- `synchronized`
+	- intrinsic locks
+	- one thread access at a time
+	- prevents data inconsistency, avoids race conditions, maintains thread safety, data integrity
+	- can be put to a method, block or be static

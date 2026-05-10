@@ -1,0 +1,24 @@
+Design a rate limiter
+
+Qs
+- Server side rate limiter
+- works in distributed environment
+- report throttling to customer
+- can throttle on various parameters
+- handles large number of requests
+- can be separate/in-code
+- low latency
+- limited memory footprint
+- high fault tolerance
+
+429 error for throttle
+
+- HLD
+ - Algorithms
+ 	- Bucket Token
+ 	- Leaking bucket
+ 	- Fixed window
+ 	- Sliding Window
+ 	- Sliding window counter
+ 	
+ 
