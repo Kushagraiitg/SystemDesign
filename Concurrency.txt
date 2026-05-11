@@ -14,4 +14,29 @@ Java concurrency
 	- intrinsic locks
 	- one thread access at a time
 	- prevents data inconsistency, avoids race conditions, maintains thread safety, data integrity
-	- can be put to a method, block or be static
+	- can be put to a method, block or be static3
+	
+	
+	
+Single tasking vd Multi tasking vs multi threading
+Modern CPUS
+	- multiple CPUs or cores
+	- 1 CPU -> mutliple applications
+	- ! applications -> multiple threads
+	
+Why multithreading
+	- better CPU utilization
+	- better IO utilization
+	- higher application responsiveness
+
+Issues:
+	- Shared mutable state cause
+		- race condition
+		invisible writes
+		congestions
+		deadlock
+		nested monitor lockout
+		starvation
+		slipped conditions
+		missed signal
+	no mutable state
