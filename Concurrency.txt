@@ -40,3 +40,14 @@ Issues:
 		slipped conditions
 		missed signal
 	no mutable state
+	
+Java Threads:
+	- extends Thread and override run() and start()
+	- implement Runnable, implement run(), start the thread
+	- implement as a lambda expression
+	
+	- thread.name
+	- thread.sleep
+	- StoppableRunnable with synchronized
+	- OS level threads are heavier than application threads
+	- 
