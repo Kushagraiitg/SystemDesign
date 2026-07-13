@@ -30,3 +30,23 @@ JVM Memory Structure
 - Native Method libs
 	contains native libs
 	used by interface to execute
+	
+	
+Java Memory Model
+	- registers and CPU caches over RAM
+	- Visibility - when changed by one, when does the other thread see it
+	- Instruction Reordering - reorder by compiler/CPU/JVM
+	- JMM defines 'happens-before' relationship
+	- memory barriers used
+	- volatile: dont cache the variable and dont reorder instructions around it
+		- visibility, no atomicity, 
+		- count++ is a three step process, overwrite allowed
+		- useful when state flag, changed by one thread and others react
+	- synchronized
+		- visibility and atomicity
+		- get lock-flush CPU cache-read from main memory-when exit then write to main memory
+		- only one thread can execute at a time
+		- when multiple lines need to run together
+	- final
+		- once contructor completes running, visibility is guranteed to all threads
+		- thread safe DTO
