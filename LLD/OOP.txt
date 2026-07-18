@@ -1,0 +1,64 @@
+Oops Concepts
+1. Encapsulation
+	bundle data and behaviour together and hides impl behind public interface
+		eg: class with private var and pub methods
+2. Abstraction
+	Expose what an object does and not how it does it
+		reduces complexity, easier maintenance, enhances modularity
+3. Inheritance
+	Re-use behaviour using "is-a" behaviour, prefer composition over if possible
+4. Polymorphism
+	Same interface, multiple impl
+		compile time
+		and runtime - method overriding
+5. Object relationship
+	Association - know about each other
+	Aggregation - weak ownership
+	Composition - strong ownership
+6. SOLID - makes codes maintainable and scalable, through loose coupling
+	Single Responsibility Principle - a class should have one reason to change
+	Open Close Principle - Open to extension, closed to modification
+	Liskov Substitution Principle - Derived Class should be usable wherever base class is expected
+	Interface Segregation Principle - Prefer small focused interfaces over one large interface
+	Dependency Injection Principle - Depend on abstraction and not concrete impl
+7. Coupling and Cohesion
+	High Cohesion in a class and less coupling with another
+8. Composition vs Inheritance
+	composition of stuff into classes provide more flexibility than inheritance
+9. Interface vs abstract
+	interface: define a capability or contract, multiple unrelated types can implement it
+	abstract: shared state or common impl
+10. Dependency Injection
+	Inject dependency instead of creating dependencies
+11. Immutability
+	dont change after creation, easier to reason about, safer in concurrent systems
+12. Identity vs Equality
+	same reference vs same data
+13. State and Behaviour
+	modification to be done by who owns the data
+	Domain objects own their state and can enforce business rules
+	Services coordinate interactions between multiple domain object or external systems
+	DTOs and API models remain simple data carriers
+14. Domain Modelling
+	Entities
+	Value Objects
+	Services
+	Repositories
+	Factories
+		eg:
+			Restaraunt is an entity
+			Menu is an entity
+			Money is a value object
+			Order is an entity
+			OrderService is a service
+			OrderRespository for data access
+15. Common TradeOffs
+	Flexibility vs simplicity
+	Performance vs maintainability
+	Composition vs inheritance
+	Generic vs specialized designs
+	Eager vs lazy initialization
+	Mutable vs immutable objects
+
+	
+		
