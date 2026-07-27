@@ -1,0 +1,84 @@
+JCIP 
+
+Ch 2 Thread Safety
+- Shared - accessible by multiple threads
+- mutable - value can change during lifetime
+- synchronized - intrinsic locks
+- for defined thread safe classes - encapsulation, immutability and clear invariants
+- a thread safe class behaves correctly, when accessed by multiple threads, irrespective of scheduling or execution of those threads by runtime with no additional sync on caller
+- stateless objects are always thread safe
+- ++count is read-modify-write operation
+- race condition - when correctness of answer depends on lucky timing
+- lazy initialization - check then act operation
+- Thread safe objects like AtomicInteger helps if only one state needs to be preserved
+- to preserve consistency, update relative state variable in a single atomic operation
+- a synchronized block spans an entire method and whole lock is the object on which the method is being invoked
+- intrinsic locks in Java acts like mutExes
+- reentrancy(locks are acquired on per thread basis and not per invocation), implemented by associating with each lock an acquisition count and an owning thread.
+- all accesses to a mutable variable should happen in same lock
+- For every invariant that involves more than one variable, all the variables involved in that invariant must be guarded by
+the same lock.
+- 
+
+Ch 3
+Sharing Objects
+Synchronization before sharing is needed as compiler can do optimizations
+- 64 bit java variables needs(long, double) can have 2 32 bit read/write, leading to sync issues
+- reading and writing threads must sync on a common threads for updated value usage
+- volatile variables help when one thread updates while others only want guaranteed updated value visibility
+- locking guarantees both visibility and atomicity, voltile only guarantee visibility
+- publishing internal state variables can compromise encapsulation and makes it difficult to preserve invariants
+- publishing objects before full construction compromises thread safety
+- this reference should not escape before construction
+- thread confined object usage is thread safe
+- ThreadLocal provides get and set accessor maintaining separate value for each thread
+- immutable objects are always thread safe
+- make all fields final unless they need to change
+- To publish an object safely, both the reference to the object and the object's state must be made visible to other
+threads at the same time. A properly constructed object can be safely published by:
+• Initializing an object reference from a static initializer;
+• Storing a reference to it into a volatile field or AtomicReference;
+• Storing a reference to it into a final field of a properly constructed object; or
+• Storing a reference to it into a field that is properly guarded by a lock
+The most useful policies for using and sharing objects in a concurrent program are:
+Thread‐confined. A thread‐confined object is owned exclusively by and confined to one thread, and can be modified by
+its owning thread.
+Shared read‐only. A shared read‐only object can be accessed concurrently by multiple threads without additional
+synchronization, but cannot be modified by any thread. Shared read‐only objects include immutable and effectively
+immutable objects.
+Shared thread‐safe. A thread‐safe object performs synchronization internally, so multiple threads can freely access it
+through its public interface without further synchronization.
+Guarded. A guarded object can be accessed only with a specific lock held. Guarded objects include those that are
+encapsulated within other thread‐safe objects and published objects that are known to be guarded by a specific lock.
+The publication requirements for an object depend on its mutability:
+• Immutable objects can be published through any mechanism;
+• Effectively immutable objects must be safely published;
+• Mutable objects must be safely published, and must be either thread‐safe or guarded by a lock.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
