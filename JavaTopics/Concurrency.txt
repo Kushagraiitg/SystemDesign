@@ -55,9 +55,24 @@ The publication requirements for an object depend on its mutability:
 • Effectively immutable objects must be safely published;
 • Mutable objects must be safely published, and must be either thread‐safe or guarded by a lock.
 
-
-
-
+Ch13
+- Java 5 introduced reentrant lock
+- ReentrantLock implements Lock, providing the same mutual exclusion and memory‐visibility guarantees as
+synchronized. Acquiring a ReentrantLock has the same memory semantics as entering a synchronized block, and
+releasing a ReentrantLock has the same memory semantics as exiting a synchronized block. (Memory visibility is
+- While remembering to release the lock from a
+[1]
+finally block is not all that difficult, it is also not impossible to forget.
+- Using timed or polled lock acquisition (TryLock) lets you regain control if you cannot acquire all the required locks,
+release the ones you did acquire, and try again
+- With intrinsic locks, there is no
+way to cancel a lock acquisition once it is started, so intrinsic locks put the ability to implement time‐budgeted activities
+at risk.
+- Performance wise: Concurrent HashMap>nonfair lock>fair lock
+- ReentrantLock provides the same locking and memory semantics as intrinsic locking, as well as additional features such
+as timed lock waits, interruptible lock waits, fairness, and the ability to implement non‐block‐structured locking.
+- This is what read‐write locks allow: a resource can be accessed by multiple readers or a single
+writer at a time, but not both.
 
 
 
